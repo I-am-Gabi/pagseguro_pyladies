@@ -1,0 +1,62 @@
+    {% macro formulario(form) %}
+
+          <form class="form col-md-12 center-block" role="form" method="POST">
+            <div class="form-group">
+              {{ form.name(class="form-control input-lg", type="text", placeholder="Nome Completo") }} 
+            </div>
+            <div class="form-group">
+              {{ form.email(class="form-control input-lg", type="text", placeholder="Email") }} 
+            </div> 
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-6">
+                  {{ form.phone(class="form-control input-lg", type="text", placeholder="Telefone") }} 
+                </div>
+                <div class="col-xs-6">
+                  {{ form.cpf(class="form-control input-lg", type="text", placeholder="CPF") }} 
+                </div> 
+              </div> 
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-6">
+                  {{ form.street(class="form-control input-lg", type="text", placeholder="Rua") }} 
+                </div>
+                <div class="col-xs-6">
+                  {{ form.district(class="form-control input-lg", type="text", placeholder="Bairro") }} 
+                </div> 
+              </div> 
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-4">
+                  {{ form.number(class="form-control input-lg", type="text", placeholder="Número") }} 
+                </div>
+                <div class="col-xs-8">
+                  {{ form.complement(class="form-control input-lg", type="text", placeholder="Complemento") }} 
+                </div> 
+              </div> 
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-4">
+                  {{ form.postal_code(class="form-control input-lg", type="text", placeholder="CEP") }} 
+                </div>
+                <div class="col-xs-8">
+                  {{ form.city(class="form-control input-lg", type="text", placeholder="Cidade") }} 
+                </div> 
+              </div> 
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-12">
+                  {{ form.state(class="form-control input-lg", type="text", placeholder="Estado") }} 
+                </div> 
+              </div> 
+            </div>
+            <div class="form-group"> 
+              {{ form.submit(type="submit", class="btn btn-primary btn-lg btn-block") }} 
+            </div>
+          </form>
+
+    {% endmacro %}
