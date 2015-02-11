@@ -13,7 +13,7 @@ from pagseguro import PagSeguro
 def index():  
 	formulario = formRequest()
 	if request.method == 'POST' and formulario.name.data!='':
-		# add no banco de dados
+		# recuperar dados do formulário
 		name = formulario.name.data
 		email = formulario.email.data
 		phone = formulario.phone.data
@@ -25,15 +25,20 @@ def index():
 		postal_code = formulario.postal_code.data 
 		city = formulario.city.data	
 		state = formulario.state.data
+		# criar novo objeto Requests
 		newRequest = Requests(name, email, phone, cpf, street, number, complement, district, postal_code, city, state)  
+		# add no banco de dados
 		db.session.add(newRequest)
 		db.session.commit()   
- 		# fazer compra
+ 		
+ 		# comprador
 		sender = {
         	"name": name,
         	"email": email,
         	"phone": phone 
         }
+
+        # remessa
 		shipping = {
 		    "street": street,
 		    "number": number,
@@ -44,9 +49,11 @@ def index():
 		    "state": state,
 		    "country": 'BRA'
 		}
+		# pagseguro
 		pg = checkout_pg(sender, shipping, newRequest)
+		# fazer a requisição ao pagseguro e retornar um objeto PagSeguroResponse
 		response = pg.checkout()
-		print 'responde url %s' % response.payment_url
+		print 'responde url %s' % response.code
 		return redirect(response.payment_url) 
 	return render_template('index.jinja2', form=formulario)
 
